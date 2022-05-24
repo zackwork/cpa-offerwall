@@ -1,10 +1,10 @@
 === CPA OFFERWALL ===
 Contributors: zacksnyder
 Donate link: https://www.buymeacoffee.com/zacksnyder
-Tags: cpa offerwall, cpagrip offerwall
+Tags: cpa offerwall, cpagrip offerwall, Affiliate marketing, Affiliate marketing, cpa marketing
 Requires at least: 4.7
-Tested up to: 5.4
-Stable tag: 4.3
+Tested up to: 5.9.3
+Stable tag: 1.0.0
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,6 +60,10 @@ Then create new page and on right side under Template select Default CPA Templat
 == Screenshots ==
 
 Screenshots are stored in the /assets directory.
+
+1. Default CPA Template Page
+2. Plugin Settings Page
+3. Creating and applying plugin template to new page
 
 == Changelog ==
 
