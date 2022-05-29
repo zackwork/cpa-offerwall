@@ -3,13 +3,14 @@ Contributors: zacksnyder
 Donate link: https://www.buymeacoffee.com/zacksnyder
 Tags: cpa offerwall, cpagrip offerwall, Affiliate marketing, Affiliate marketing, cpa marketing
 Requires at least: 4.7
-Tested up to: 5.9.3
-Stable tag: 1.0.0
+Tested up to: 6.0
+Stable tag: 1.0.1
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+
+CPA OFFERWALL will display cpa marketing offers in a template as offerwall using your json link to monetize your traffic.
 
 == Description ==
 
@@ -22,7 +23,7 @@ This plugin will help you promote cpagrip offers to your visitors/traffic and mo
 It's easy to install and uses light classic card template, i will add more templates in the future.
 
 
-1. This plugin currently supports only `CPAGRIP Offerwalls` so if you don't have account go and register at https://www.cpagrip.com/
+1. This plugin currently supports only `CPAGRIP Offerwalls` so if you don't have account go and register at [www.cpagrip.com](https://www.cpagrip.com/)
 2. When you have your cpagrip account login to it and, from your dashboard go to `Offer Tools` in the side-navbar.
 3. Below Offer Tools click on `JSON Offer Feed` there you will see `Your JSON Feed URL:` Copy the json link below it.
 4. Go to Your Wordpress Dashboard and from right side-menu under setting click on CPA OW Settings, `You Need to have Installed and activated this plugin first` in this page you will see Json Url field Paste the json url you copied earlier from cpgrip and paste it there and then save click save.
@@ -74,3 +75,6 @@ Screenshots are stored in the /assets directory.
 
 = 1.0 =
 * Initial public release to the WordPress plugin repository
+= 1.0.1 =
+* Fixed UI on plugin setting page
+* Moved Setting Page to Top Level Menu

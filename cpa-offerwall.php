@@ -5,7 +5,7 @@
 Plugin Name: CPA OFFERWALL
 Plugin URI:
 Description: This plugin retrieves cpagrip json offers  and displays it in template as offerwall
-Version: 1.0.0
+Version: 1.0.1
 Author: ZackSnyder
 Author URI: https://profiles.wordpress.org/zacksnyder/
 License: GPLv2 or later
@@ -19,6 +19,41 @@ if(!defined('CPA_OW_PATH')){
 if(!defined('CPA_OW_URL')){
 	define('CPA_OW_URL', plugin_dir_url(__FILE__) );
 }
+
+if ( ! function_exists( 'cpa_freemius' ) ) {
+    // Create a helper function for easy SDK access.
+    function cpa_freemius() {
+        global $cpa_freemius;
+
+        if ( ! isset( $cpa_freemius ) ) {
+            // Include Freemius SDK.
+            require_once dirname(__FILE__) . '/freemius/start.php';
+
+            $cpa_freemius = fs_dynamic_init( array(
+                'id'                  => '10408',
+                'slug'                => 'cpa-offerwall',
+                'type'                => 'plugin',
+                'public_key'          => 'pk_cf2ae81a4872960633641639a686c',
+                'is_premium'          => false,
+                'has_addons'          => false,
+                'has_paid_plans'      => false,
+                'menu'                => array(
+                    'slug'           => 'cpa-ow-settings',
+                ),
+            ) );
+        }
+
+        return $cpa_freemius;
+    }
+
+    // Init Freemius.
+    cpa_freemius();
+    // Signal that SDK was initiated.
+    do_action( 'cpa_freemius_loaded' );
+}
+
+
+
 
 
 
@@ -38,6 +73,9 @@ class CPA_OW{
 
 		add_action( 'wp_enqueue_scripts', array($this, 'cp_ow_enqueue'), 99 );
 
+		add_action( 'admin_enqueue_scripts', array($this, 'enqueuing_admin_scripts'), 9999);
+
+
 		add_filter('theme_page_templates', array($this, 'cpa_template_register'), 10,3);
 
 		add_filter('template_include', array($this, 'cpa_template_select'), 99);
@@ -45,7 +83,13 @@ class CPA_OW{
 	}
 	
 	public function cpa_ow_admin_menu_option(){
-		add_submenu_page('options-general.php','CPA OW Settings', 
+		add_menu_page(
+			'CPA OFFERWALL',
+			'CPA OFFERWALL', 
+			'manage_options', 
+			'cpa-ow-settings', 
+			array($this, 'cpa_ow_settings'), 'dashicons-money-alt', 22);
+		add_submenu_page('cpa-ow-settings','CPA OW Settings', 
 			'CPA OW Settings', 'administrator', 'cpa-ow-settings', array($this, 'cpa_ow_settings'));
 
 	}
@@ -113,6 +157,13 @@ class CPA_OW{
 		$script_params = array('cpa_ow_json_url' => get_option('cpa_ow_json_url'));
 
 		wp_localize_script('cpa-ow-script', 'scriptParams', $script_params);
+
+	}
+
+	public function enqueuing_admin_scripts(){
+
+		wp_enqueue_style('admin-cpa-ow-styles', CPA_OW_URL.'res/css/admin-style.css');
+		wp_enqueue_style('admin-fontawesome-5', CPA_OW_URL.'res/fonts/all.min.css');
 
 	}
 
